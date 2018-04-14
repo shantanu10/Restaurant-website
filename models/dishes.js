@@ -14,9 +14,9 @@ var commentSchema = new Schema({
         type: String,
         required: true
     },
-    author:  {
-        type: String,
-        required: true
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'  // used to tell mongodb that it refers another schema( User here) through ObjectId
     }
 }, {
     timestamps: true
