@@ -65,7 +65,12 @@ router.get('/logout', (req, res) => {
   else {
     var err = new Error('You are not logged in!');
     err.status = 403;
-    next(err);
+    res.locals.message = err.message;  //message to be displayed through error.jade
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
   }
 });
 
