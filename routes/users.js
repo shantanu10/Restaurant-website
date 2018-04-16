@@ -8,7 +8,7 @@ var authenticate = require('../authenticate');
 router.use(bodyParser.json());   // parsing the json content of request body
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/',authenticate.verifyUser, authenticate.verifyAdmin, function(req, res, next) {
   User.find({})
   .then((users)=>{
     res.statusCode = 200;
