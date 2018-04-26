@@ -14,7 +14,7 @@ favoriteRouter.use(bodyParser.json());
 favoriteRouter.route('/')
 .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
 .get(cors.cors,  authenticate.verifyUser, (req,res,next) => {
-    Favorites.find({'postedBy': req.user._id})
+    Favorites.findOne({'postedBy': req.user._id})
     .populate('postedBy')
     .populate('dishes')
     .then((favorites) => {
@@ -83,7 +83,7 @@ favoriteRouter.route('/')
 favoriteRouter.route('/:dishId')
 .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
 .get(cors.cors, authenticate.verifyUser, (req,res,next) => {
-    Favorites.findOne({user: req.user._id})
+    Favorites.findOne({postedBy: req.user._id})
     .then((favorites) => {
         if (!favorites) {
             res.statusCode = 200;
@@ -156,7 +156,7 @@ favoriteRouter.route('/:dishId')
     res.end('PUT operation not supported on /favorites/' + req.params.dishId);
 })
 .delete(cors.cors,  authenticate.verifyUser, (req,res,next) => {
-    Favorites.findOne({postedBy:req.user._id}, (err, favourite)=>{
+    Favorites.findOne({postedBy:req.user._id}, (err, favorite)=>{
         if (err) return next(err);
 
         var index = favorite.dishes.indexOf(req.params.dishId);

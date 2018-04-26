@@ -29,7 +29,7 @@ const connect = mongoose.connect(url, {
     /* other options */
   });
   connect.then((db) => {
-    console.log("Connected correctly to server");
+    console.log("Connected correctly to  Mongodb server");
 }, (err) => { console.log(err); });
 
 //instantiating the express as 'app'

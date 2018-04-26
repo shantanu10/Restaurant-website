@@ -27,6 +27,10 @@ var promoSchema = new Schema({
         type: String,
         required: true
     },
+    featured: {
+        type: String,
+        default:false      
+    }
 }, {
     timestamps: true
 });
