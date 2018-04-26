@@ -24,10 +24,7 @@ const Dishes = require('./models/dishes');   //Mongoose model
 
 // Connection URL
 const url = config.mongoUrl;
-const connect = mongoose.connect(url, {
-    useMongoClient: true,
-    /* other options */
-  });
+const connect = mongoose.connect(url || 'mongodb://localhost:3000/conFusion' );
   connect.then((db) => {
     console.log("Connected correctly to  Mongodb server");
 }, (err) => { console.log(err); });
