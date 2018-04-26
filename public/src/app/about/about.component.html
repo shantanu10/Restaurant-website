@@ -1,0 +1,79 @@
+<div class="container"
+     fxLayout="column"
+     fxLayoutGap="10px">
+
+     <div fxFlex>
+            <div>
+               <h3>About Us</h3>
+               <hr>
+            </div>
+     </div>
+
+      <div fxFlex>
+        <div fxLayout="column" fxLayout.gt-sm="row">
+          <div fxFlex="70">
+              <h2>Our History</h2>
+              <p>In 1917, 15-year-old Ray Kroc lied about his age to join the Red Cross as an ambulance driver, but the war ended before he completed his training. He then worked as a piano player, a paper cup salesman and a Multimixer salesman.</p>
+              <p>In 1954, he visited a restaurant in San Bernardino, California that had purchased several Multimixers. There he found a small but successful restaurant run by brothers Dick and Mac McDonald, and was stunned by the effectiveness of their operation. They produced a limited menu, concentrating on just a few items – burgers, fries and beverages – which allowed them to focus on quality and quick service.</p>
+              <p>They were looking for a new franchising agent and Kroc saw an opportunity. In 1955, he founded McDonald’s System, Inc., a predecessor of the McDonald’s Corporation, and six years later bought the exclusive rights to the McDonald’s name and operating system. By 1958, McDonald’s had sold its 100 millionth hamburger.</p>
+          </div>
+          <div fxFlex="30">
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title>
+                  <h2>Facts At a Glance</h2>
+                  </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                        <dl>
+                            <dt>Started</dt>
+                            <dd>3 Feb. 2013</dd>
+                            <dt>Major Stake Holder</dt>
+                            <dd>HK Fine Foods Inc.</dd>
+                            <dt>Last Year's Turnover</dt>
+                            <dd>$1,250,375</dd>
+                            <dt>Employees</dt>
+                            <dd>40</dd>
+                       </dl>
+                </mat-card-content>
+              </mat-card>
+          </div>
+        </div>
+      </div>
+      
+      <div fxFlex>
+                <mat-card>
+                    <blockquote>
+                        <h3>You better cut the pizza in four pieces because
+                            I'm not hungry enough to eat six.</h3>
+                        <footer>-- Yogi Berra,
+                          <cite>The Wit and Wisdom of Yogi Berra,
+                            P. Pepe, Diversion Books, 2014</cite>
+                        </footer>
+                    </blockquote>
+                </mat-card>
+      </div>
+
+
+        <div fxFlex>
+          <h2>Corporate Leadership</h2>
+          <div *ngIf="leaders || errMess; else loading">
+            <mat-list *ngIf="leaders" [@expand]>
+              <mat-list-item *ngFor="let leader of leaders">
+                <img mat-list-avatar src="{{BaseURL + leader.image}}" alt={{leader.name}}>
+                <h4 mat-line> {{leader.name}} {{leader.abbr}}</h4>
+                  <p mat-line> {{leader.designation}}</p>
+                  <p mat-line>{{leader.description}}
+                  </p>
+              </mat-list-item>
+            </mat-list>
+            <div *ngIf="errMess">
+              <h2>Error</h2>
+              <h4>{{errMess}}</h4>
+            </div>
+          </div>
+          <ng-template #loading>
+            <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+          </ng-template>
+       </div>
+</div>
