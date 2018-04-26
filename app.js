@@ -23,10 +23,10 @@ mongoose.Promise = require('bluebird');
 const Dishes = require('./models/dishes');   //Mongoose model
 
 // Connection URL
-const url = config.mongoUrl;
-const connect = mongoose.connect(url || 'mongodb://localhost:27017/conFusion' );
+const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/conFusion';
+const connect = mongoose.connect(url);
   connect.then((db) => {
-    console.log("Connected correctly to  Mongodb server");
+    console.log("Connected correctly to  Mongodb server: " + url);
 }, (err) => { console.log(err); });
 
 //instantiating the express as 'app'
